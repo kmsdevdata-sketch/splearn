@@ -1,4 +1,4 @@
-package tobyspring.splearn;
+package spring.splearn;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
