@@ -38,4 +38,19 @@ class MemberTest {
 
         assertThat(member.getStatus()).isEqualTo(MemberStatus.ACTIVE);
     }
+
+    @Test
+    void activate_실패() {
+
+        var member = new Member(
+                "kms.dev.data@gmail.com",
+                "Minseo",
+                "secret");
+
+        member.activate();
+
+        assertThatThrownBy(() -> {
+            member.activate();
+        }).isInstanceOf(IllegalStateException.class);
+    }
 }

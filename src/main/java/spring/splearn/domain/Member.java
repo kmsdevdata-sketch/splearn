@@ -1,7 +1,11 @@
 package spring.splearn.domain;
 
 
+import org.springframework.util.Assert;
+
 import java.util.Objects;
+
+import static org.springframework.util.Assert.*;
 
 public class Member {
 
@@ -40,6 +44,9 @@ public class Member {
     }
 
     public void activate() {
+
+        state(status == MemberStatus.PENDING,"PENDING 상태가 아닙니다.");
+
         this.status = MemberStatus.ACTIVE;
     }
 }
