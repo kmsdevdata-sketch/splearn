@@ -1,10 +1,8 @@
 package spring.splearn.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemberTest {
 
@@ -16,5 +14,28 @@ class MemberTest {
                 "secret");
 
         assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
+    }
+    
+    @Test
+    void 생성자_널체크() {
+
+        assertThatThrownBy(() -> new Member(
+                null,
+                "Minseo",
+                "secret"))
+                .isInstanceOf(NullPointerException.class);
+
+    }
+
+    @Test
+    void activate() {
+        var member = new Member(
+                "kms.dev.data@gmail.com",
+                "Minseo",
+                "secret");
+
+        member.activate();
+
+        assertThat(member.getStatus()).isEqualTo(MemberStatus.ACTIVE);
     }
 }
