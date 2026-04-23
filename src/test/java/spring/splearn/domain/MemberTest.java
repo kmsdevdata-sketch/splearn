@@ -53,4 +53,32 @@ class MemberTest {
             member.activate();
         }).isInstanceOf(IllegalStateException.class);
     }
+
+    @Test
+    void 탈퇴() {
+
+        var member = new Member(
+                "kms.dev.data@gmail.com",
+                "Minseo",
+                "secret");
+        member.activate();
+
+        member.deactivate();
+
+        assertThat(member.getStatus()).isEqualTo(MemberStatus.DEACTIVATED);
+    }
+
+    @Test
+    void deactivate_실패() {
+
+        var member = new Member(
+                "kms.dev.data@gmail.com",
+                "Minseo",
+                "secret");
+
+
+        assertThatThrownBy(() -> {
+            member.deactivate();
+        }).isInstanceOf(IllegalStateException.class);
+    }
 }
