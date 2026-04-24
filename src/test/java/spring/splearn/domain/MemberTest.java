@@ -77,8 +77,12 @@ class MemberTest {
                 "secret");
 
 
-        assertThatThrownBy(() -> {
-            member.deactivate();
-        }).isInstanceOf(IllegalStateException.class);
+        assertThatThrownBy(member::deactivate).isInstanceOf(IllegalStateException.class);
+
+        member.activate();
+        member.deactivate();
+
+        assertThatThrownBy(member::deactivate).isInstanceOf(IllegalStateException.class);
+
     }
 }

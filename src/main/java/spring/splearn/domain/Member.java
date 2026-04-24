@@ -1,20 +1,21 @@
 package spring.splearn.domain;
 
-
-import org.springframework.util.Assert;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Objects;
-
 import static org.springframework.util.Assert.*;
 
+@Getter
+@ToString
 public class Member {
+
 
     private String email;
 
     private String nickname;
 
     private String passwordHash;
-
 
     private MemberStatus status;
 
@@ -25,23 +26,6 @@ public class Member {
         this.passwordHash = Objects.requireNonNull(passwordHash);
 
         this.status = MemberStatus.PENDING;
-    }
-
-
-    public MemberStatus getStatus() {
-        return status;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void activate() {
