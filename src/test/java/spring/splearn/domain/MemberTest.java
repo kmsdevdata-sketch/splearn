@@ -24,10 +24,12 @@ class MemberTest {
             }
         };
 
-        member = Member.create("kms.dev.data@gmail.com",
-                "Minseo",
-                "secret",
+        member = Member.create(
+                new MemberCreateRequest("kms.dev.data@gmail.com",
+                        "Minseo",
+                        "secret"),
                 passwordEncoder);
+
     }
 
     @Test
@@ -94,5 +96,18 @@ class MemberTest {
         member.changePassword("verysecret",passwordEncoder);
 
         assertThat(member.verifyPassword("verysecret", passwordEncoder)).isTrue();
+    }
+
+    @Test
+    void 상태_체크() {
+        assertThat(member.isActive()).isFalse();
+
+        member.activate();
+
+        assertThat(member.isActive()).isTrue();
+
+        member.deactivate();
+
+        assertThat(member.isActive()).isFalse();
     }
 }
